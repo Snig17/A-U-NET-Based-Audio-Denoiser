@@ -54,6 +54,9 @@ Then the model is subtracted from the noisy voice spectrogram (here I apply a di
 
 ## Interface
 We used Streamlit web application that allows users to upload an audio file, perform audio denoising using a pre-trained U-Net model, and visualize the input and output audio along with various analyses.
-![image](https://github.com/Snig17/A-U-NET-Based-Audio-Denoiser/assets/127118518/c22aa60f-e33b-41ea-9c31-5140395cb18e)
+
+![image](https://github.com/Snig17/A-U-NET-Based-Audio-Denoiser/assets/127118518/64066e83-47db-4557-a9b0-116ee061f3b1)
+
+![image](https://github.com/Snig17/A-U-NET-Based-Audio-Denoiser/assets/127118518/6cfdab14-fa16-4a35-84e8-59e5bfbfa6fb)
 
 
