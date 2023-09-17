@@ -33,3 +33,12 @@ The model used for the training is a U-Net, a Deep Convolutional Autoencoder wit
 
 As input to the network, the magnitude spectrograms of the noisy voices. As output the Noise to model (noisy voice magnitude spectrogram - clean voice magnitude spectrogram). Both input and output matrix are scaled with a global scaling to be mapped into a distribution between -1 and 1.
 
+Many configurations have been tested during the training. For the preferred configuration the encoder is made of 10 convolutional layers (with LeakyReLU, maxpooling and dropout). The decoder is a symmetric expanding path with skip connections. The last activation layer is a hyperbolic tangent (tanh) to have an output distribution between -1 and 1. For training from scratch the initial random weights where set with He normal initializer.
+
+Model is compiled with Adam optimizer and the loss function used is the Huber loss as a compromise between the L1 and L2 loss.
+
+At the end, I obtained a training loss of 0.002129 and a validation loss of 0.002406. Below a loss graph made in one of the trainings.
+
+![image](https://github.com/Snig17/A-U-NET-Based-Audio-Denoiser/assets/127118518/d7f4449b-a20f-4b31-ad09-b892f3049c77)
+
+
