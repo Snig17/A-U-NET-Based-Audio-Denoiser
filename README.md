@@ -45,7 +45,7 @@ At the end, I obtained a training loss of 0.002129 and a validation loss of 0.00
 
 For prediction, the noisy voice audios are converted into numpy time series of windows slightly above 1 second. Each time serie is converted into a magnitude spectrogram and a phase spectrogram via STFT transforms. Noisy voice spectrograms are passed into the U-Net network that will predict the noise model for each window (cf graph below). Prediction time for one window once converted to magnitude spectrogram is around 80 ms using classical CPU.
 
-![image](https://github.com/Snig17/A-U-NET-Based-Audio-Denoiser/assets/127118518/bde5346a-7946-44d9-8236-3252dec92193)
+![image](https://github.com/Snig17/A-U-NET-Based-Audio-Denoiser/assets/127118518/97994d12-1219-410c-85b2-8701cf39cbc8)
 
 
 Then the model is subtracted from the noisy voice spectrogram (here I apply a direct subtraction as it was sufficient for my task, we could imagine to train a second network to adapt the noise model, or applying a matching filter such as performed in signal processing). The "denoised" magnitude spectrogram is combined with the initial phase as input for the inverse Short Time Fourier Transform (ISTFT). Our denoised time serie can be then converted to audio (cf graph below).
