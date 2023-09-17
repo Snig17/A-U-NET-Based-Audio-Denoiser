@@ -7,7 +7,7 @@ Noise reduction is a crucial problem in the field of audio processing, as it sig
 ## Data Creation: 
 To create the datasets for training, I gathered english speech clean voices and environmental noises from different sources.
 
-The clean voices were mainly gathered from LibriSpeech: an ASR corpus based on public domain audio books. I used as well some datas from SiSec. The environmental noises were gathered from ESC-50 dataset or https://www.ee.columbia.edu/~dpwe/sounds/.
+The clean voices were mainly gathered from LibriSpeech(http://www.openslr.org/12/): an ASR corpus based on public domain audio books. I used as well some datas from SiSec(https://sisec.inria.fr/sisec-2015/2015-two-channel-mixtures-of-speech-and-real-world-background-noise/). The environmental noises were gathered from ESC-50 dataset or https://www.ee.columbia.edu/~dpwe/sounds/.
 
 For this project, I focused on 10 classes of environmental noise: tic clock, foot steps, bells, handsaw, alarm, fireworks, insects, brushing teeth, vaccum cleaner and snoring. These classes are illustrated in the image below (I created this image using pictures from https://unsplash.com).
 
