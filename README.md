@@ -16,14 +16,11 @@ To create the datasets for training/validation/testing, audios were sampled at 8
 
 To prepare the data, I recommend to create data/Train and data/Test folders in a location separate from your code folder. Then create the following structure as in the image below:
 
-data folder structure
+![image](https://github.com/Snig17/A-U-NET-Based-Audio-Denoiser/assets/127118518/fd51b61d-1b33-40f8-af8b-afff71ba5590)
 
-You would modify the noise_dir, voice_dir, path_save_spectrogram, path_save_time_serie, and path_save_sound paths name accordingly into the args.py file that takes the default parameters for the program.
 
-Place your noise audio files into noise_dir directory and your clean voice files into voice_dir.
-
-Specify how many frames you want to create as nb_samples in args.py (or pass it as argument from the terminal) I let nb_samples=50 by default for the demo but for production I would recommend having 40 000 or more.
-
-Then run python main.py --mode='data_creation'. This will randomly blend some clean voices from voice_dir with some noises from noise_dir and save the spectrograms of noisy voices, noises and clean voices to disk as well as complex phases, time series and sounds (for QC or to test other networks). It takes the inputs parameters defined in args.py. Parameters for STFT, frame length, hop_length can be modified in args.py (or pass it as arguments from the terminal), but with the default parameters each window will be converted into spectrogram matrix of size 128 x 128.
-
-Datasets to be used for training will be magnitude spectrograms of noisy voices and magnitude spectrograms of clean voices.
+- You would modify the noise_dir, voice_dir, path_save_spectrogram, path_save_time_serie, and path_save_sound paths name accordingly into the args.py file that takes the default parameters for the program.
+- Place your noise audio files into noise_dir directory and your clean voice files into voice_dir.
+- Specify how many frames you want to create as nb_samples in args.py (or pass it as argument from the terminal) I let nb_samples=50 by default for the demo but for production I would recommend having 40 000 or more.
+- Then run python main.py --mode='data_creation'. This will randomly blend some clean voices from voice_dir with some noises from noise_dir and save the spectrograms of noisy voices, noises and clean voices to disk as well as complex phases, time series and sounds (for QC or to test other networks). It takes the inputs parameters defined in args.py. Parameters for STFT, frame length, hop_length can be modified in args.py (or pass it as arguments from the terminal), but with the default parameters each window will be converted into spectrogram matrix of size 128 x 128.
+- Datasets to be used for training will be magnitude spectrograms of noisy voices and magnitude spectrograms of clean voices.
