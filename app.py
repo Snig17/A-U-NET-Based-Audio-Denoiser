@@ -1,6 +1,5 @@
 import streamlit
 import os
-import subprocess
 import streamlit as st
 import librosa
 import librosa.display
@@ -9,10 +8,6 @@ import matplotlib
 import matplotlib.pyplot as plt
 import soundfile as sf
 from prediction_denoise import prediction
-
-max_length = 120  # seconds audio file
-
-command_inference = 'python3 main.py --mode "prediction" --audio_dir_prediction "input/"  --dir_save_prediction "output/" --audio_output_prediction "input.wav"'
 
 
 def clean_temp():
@@ -33,6 +28,9 @@ def clean_temp():
 
 
 if __name__ == '__main__':
+
+    os.makedirs('input', exist_ok=True)
+    os.makedirs('output', exist_ok=True)
 
     clean_temp()  # Clean temporal files on each upload
 
@@ -56,11 +54,11 @@ if __name__ == '__main__':
         #######################
         # UPLOADED FILE
         #######################
-        if (file_details['FileType'] == 'audio/wav' or
-            file_details['FileType'] == 'audio/mp3' or
+        if (file_details['FileType'] in ('audio/wav', 'audio/x-wav') or
+            file_details['FileType'] in ('audio/mp3', 'audio/mpeg') or
                 file_details['FileType'] == 'audio/ogg'):
 
-            if file_details['FileType'] == 'audio/mp3':
+            if file_details['FileType'] in ('audio/mp3', 'audio/mpeg'):
                 with open('input/noisy_voice_long_t2.mp3', 'wb') as f:
                     f.write(uploaded_file.getbuffer())
 
@@ -74,7 +72,7 @@ if __name__ == '__main__':
                 data, samplerate = sf.read('input/noisy_voice_long_t2.ogg')
                 sf.write('input/noisy_voice_long_t2.wav', data, samplerate)
 
-            elif file_details['FileType'] == 'audio/wav':
+            else:
                 with open('input/noisy_voice_long_t2.wav', 'wb') as f:
                     f.write(uploaded_file.getbuffer())
 
@@ -99,12 +97,9 @@ if __name__ == '__main__':
             ax.set(title='Input audio')
             st.pyplot(fig)
 
-            # Chroma
-            # hop_lengsss
-            
-            input_path="C:\\Users\\Snigdha\\OneDrive\\Desktop\\project\\Audio Denoising\\Audio Denoising\\input"
-            output_path="C:\\Users\\Snigdha\\OneDrive\\Desktop\\project\\Audio Denoising\\Audio Denoising\\output\\"
-            prediction("weights","model_unet",input_path,output_path,["noisy_voice_long_t2.wav"],"denoise.wav", 8000, 1.0, 8064, 8064, 255, 63)
+            # Denoise prediction
+            prediction("weights", "model_unet", "input/", "output/",
+                       ["noisy_voice_long_t2.wav"], "denoise.wav", 8000, 1.0, 8064, 8064, 255, 63)
 
             # OUTPUT
 
@@ -126,3 +121,6 @@ if __name__ == '__main__':
             librosa.display.waveplot(y, sr=sr)
             ax.set(title='Output audio')
             st.pyplot(fig)
+
+        else:
+            st.error("Unsupported file type. Please upload a .wav, .mp3, or .ogg file.")
