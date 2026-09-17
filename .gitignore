@@ -1,0 +1,4 @@
+__pycache__/
+*.pyc
+input/*.wav
+output/*.wav
