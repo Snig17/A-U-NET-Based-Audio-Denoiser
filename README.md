@@ -4,6 +4,14 @@
 Noise reduction is a crucial problem in the field of audio processing, as it significantly impacts the quality and intelligibility of sound signals. In this project, we propose a novel approach based on the U-Net architecture to tackle sound noise reduction efficiently. The U-Net is a deep learning model known for its effectiveness in image segmentation tasks, and we adapt it to handle the challenges posed by audio denoising. The introduction of the project provides an overview of the significance of noise reduction in audio processing and the growing interest in leveraging deep learning techniques for this purpose. We highlight the drawbacks of traditional methods, which often struggle to effectively remove noise while preserving the original audio content.
 ![image](https://github.com/Snig17/A-U-NET-Based-Audio-Denoiser/assets/127118518/606e3c93-e118-45b3-96cb-7af26afc3d0e)
 
+## Setup
+```bash
+pip install -r requirements.txt
+streamlit run app.py
+```
+
+**Note on pinned dependency versions:** `requirements.txt` intentionally pins older versions (`tensorflow==1.15.2`, `librosa==0.7.2`, etc.) rather than the latest releases. This isn't an oversight — the code relies on `librosa.output.write_wav()`, a function that was removed entirely in later `librosa` versions, and the pre-trained model weights in `weights/` were saved under this TensorFlow version. Upgrading would require rewriting parts of the audio I/O code and re-validating the saved model.
+
 ## Data Creation: 
 To create the datasets for training, I gathered english speech clean voices and environmental noises from different sources.
 
@@ -59,4 +67,6 @@ We used Streamlit web application that allows users to upload an audio file, per
 
 ![image](https://github.com/Snig17/A-U-NET-Based-Audio-Denoiser/assets/127118518/6cfdab14-fa16-4a35-84e8-59e5bfbfa6fb)
 
+## License
+This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
 
